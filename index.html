@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sy Trades — Your Guide to Profitable Trading</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div data-banner></div>
+<div data-header></div>
+
+<main>
+  <!-- HERO -->
+  <section class="container hero">
+    <span class="hero-arrow left">&#8249;</span>
+    <span class="hero-arrow right">&#8250;</span>
+    <div class="hero-logo" id="heroLogo"></div>
+    <h1>Your Guide to<br>Profitable Trading</h1>
+    <p>Trading is a difficult and lonely journey, and that's why we created this. Join our free trading community to improve your skillset &amp; profitability.</p>
+    <a class="btn" id="learnTodayBtn" target="_blank" rel="noopener">Learn Today ↗</a>
+  </section>
+
+  <!-- TOP RATED FIRMS -->
+  <section class="container section-tight">
+    <h2 class="section-title center">Top Rated Firms</h2>
+    <p class="eyebrow center">Compare our top-rated prop firms and get access to limited discounts.</p>
+    <div class="firm-grid" id="topFirms3"></div>
+    <div class="firm-grid row2" id="topFirms2"></div>
+  </section>
+
+  <!-- WANT TO KNOW MORE -->
+  <section class="container section">
+    <h2 class="section-title center">Want to Know More About Prop Firms?</h2>
+    <p class="eyebrow center">Learn and compare the top-rated prop firms and get access to limited-time discounts.</p>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="arrow-down">↓</div><h4>A-Z Beginner Guide</h4>
+        <p>Complete beginner's guide to prop trading with essential videos and comprehensive resources.</p>
+        <a class="btn btn-sm btn-block" href="beginner-guide.html">Learn More ↗</a>
+      </div>
+      <div class="info-card">
+        <div class="arrow-down">↓</div><h4>Prop Firm Comparison</h4>
+        <p>Compare all the top prop trading firms side by side. Find the perfect match for your trading style.</p>
+        <a class="btn btn-sm btn-block" href="compare.html">Learn More ↗</a>
+      </div>
+      <div class="info-card">
+        <div class="arrow-down">↓</div><h4>True Cost to Funding</h4>
+        <p>Calculate the real costs of getting funded across different prop firms including all fees.</p>
+        <a class="btn btn-sm btn-block" href="true-cost.html">Learn More ↗</a>
+      </div>
+      <div class="info-card">
+        <div class="arrow-down">↓</div><h4>Maximizing Payouts</h4>
+        <p>Learn proven strategies to maximize your profits and optimize your payout potential.</p>
+        <a class="btn btn-sm btn-block" href="maximizing-payouts.html">Learn More ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUSTED BY -->
+  <section class="trusted section" id="about">
+    <div class="container center">
+      <h2 class="section-title">Trusted by Traders Worldwide</h2>
+      <p class="eyebrow">Explore all the prop trading firms we work with and find exclusive deals.</p>
+      <div class="trusted-logos" id="trustedLogos"></div>
+    </div>
+  </section>
+
+  <!-- WEEKLY GIVEAWAY -->
+  <section class="container section">
+    <div class="cta-block">
+      <h2 class="section-title">Weekly Giveaway Details</h2>
+      <p>Join our Discord community for giveaways every Thursday where we give away free prop firm evaluations. Everything is completely free — no strings attached.</p>
+      <p>Every Thursday we give away free prop firm evaluations (~$300 value), special discount codes and bonuses. Our active community of 6,000+ traders shares knowledge, strategies, and support to help everyone succeed.</p>
+      <a class="btn btn-discord" id="joinCommunityBtn" target="_blank" rel="noopener">Join Free Discord Community</a>
+      <div class="fineprint">100% Free • No Hidden Costs • Active Community of 6,000+ Traders</div>
+    </div>
+  </section>
+</main>
+
+<div data-footer></div>
+
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script>
+  // hero + community links
+  document.getElementById("heroLogo").innerHTML = window.SY_BULL;
+  const invite = (window.SY_CONFIG && window.SY_CONFIG.discordInviteUrl) || "#";
+  document.getElementById("learnTodayBtn").href = invite;
+  document.getElementById("joinCommunityBtn").href = invite;
+
+  const D = window.SY_DATA;
+  const card = (item) => {
+    const f = D.firms[item.key];
+    const off = D.discounts[item.key];
+    return `<div class="firm-card">
+      <div class="ribbon ${item.soon ? 'soon' : ''}">${item.ribbon}</div>
+      <div class="firm-logo">${f.logo}</div>
+      <h3>${f.name}</h3>
+      <div class="badge-off">${off}% OFF</div>
+      <a class="btn btn-sm btn-block" href="${f.site}" target="_blank" rel="noopener">Learn More ↗</a>
+    </div>`;
+  };
+  document.getElementById("topFirms3").innerHTML = D.topRated.slice(0,3).map(card).join("");
+  document.getElementById("topFirms2").innerHTML = D.topRated.slice(3).map(card).join("");
+  document.getElementById("trustedLogos").innerHTML =
+    D.trustedStrip.map(k => `<a href="${D.firms[k].site}" target="_blank" rel="noopener" title="${D.firms[k].name}">${D.firms[k].logo}</a>`).join("");
+</script>
+</body>
+</html>

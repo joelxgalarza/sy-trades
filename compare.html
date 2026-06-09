@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prop Firm Comparison — Sy Trades</title>
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  .cmp-table { width:100%; border-collapse:separate; border-spacing:0 10px; }
+  .cmp-table th { text-align:left; color:var(--text-dim); font-size:12px; text-transform:uppercase; letter-spacing:.04em; padding:0 16px; }
+  .cmp-table td { background:var(--card); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:16px; }
+  .cmp-table td:first-child { border-left:1px solid var(--border); border-radius:var(--radius) 0 0 var(--radius); }
+  .cmp-table td:last-child { border-right:1px solid var(--border); border-radius:0 var(--radius) var(--radius) 0; }
+  .cmp-firm { display:flex; align-items:center; gap:12px; font-weight:700; }
+  .cmp-firm .l { width:36px;height:36px;border-radius:8px;background:var(--card-2);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .cmp-firm .l svg{max-width:28px;max-height:28px;}
+  .cmp-off { background:var(--green-bg); color:var(--green-text); font-weight:700; font-size:13px; padding:3px 10px; border-radius:14px; }
+  .cmp-wrap { overflow-x:auto; }
+  @media(max-width:700px){ .cmp-table{ min-width:640px; } }
+</style>
+</head>
+<body>
+<div data-banner></div>
+<div data-header></div>
+
+<main class="container section">
+  <a class="back-link" href="index.html">← Back</a>
+  <div class="center" style="margin-bottom:10px;">
+    <h1 class="section-title" style="font-size:clamp(28px,5vw,44px);">Prop Firm Comparison</h1>
+    <p class="eyebrow">Compare all the top prop trading firms side by side. Find the perfect match for your trading style — and grab exclusive discounts with code <strong id="codeInline"></strong>.</p>
+  </div>
+
+  <div class="cmp-wrap" style="margin-top:30px;">
+    <table class="cmp-table">
+      <thead><tr>
+        <th>Firm</th><th>Payout Split</th><th>Drawdown</th><th>Payout Cycle</th><th>Discount</th><th></th>
+      </tr></thead>
+      <tbody id="cmpBody"></tbody>
+    </table>
+  </div>
+
+  <div class="prose-card">
+    <h3>How to Choose the Right Firm</h3>
+    <p>There's no single "best" prop firm — the right choice depends on your trading style, risk tolerance, and goals. Scalpers may prioritize tight spreads and fast payouts, while swing traders care more about trailing vs. end-of-day drawdown rules and overnight/news-trading permissions.</p>
+    <p>Use the table above as a starting point, then verify the current rules directly with each firm before purchasing — terms change frequently. All discounts shown use code <strong id="codeInline2"></strong>.</p>
+  </div>
+</main>
+
+<div data-footer></div>
+
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script>
+  const D = window.SY_DATA;
+  document.getElementById("codeInline").textContent = D.code;
+  document.getElementById("codeInline2").textContent = D.code;
+  // illustrative comparison specs (edit freely)
+  const specs = {
+    apex:     { split:"100% first $25k, then 90%", dd:"Trailing", cycle:"On-demand (8 days)" },
+    alpha:    { split:"Up to 90%", dd:"EOD Trailing", cycle:"Bi-weekly" },
+    mff:      { split:"Up to 90%", dd:"EOD / Static", cycle:"On-demand" },
+    lucid:    { split:"Up to 90%", dd:"EOD Trailing", cycle:"Weekly" },
+    tpt:      { split:"80% → 90%", dd:"EOD Trailing", cycle:"Weekly (Pro)" },
+    tradeify: { split:"Up to 90%", dd:"Static / Trailing", cycle:"On-demand" },
+    ft:       { split:"Up to 90%", dd:"EOD Trailing", cycle:"Bi-weekly" },
+    fff:      { split:"Up to 90%", dd:"EOD Trailing", cycle:"On-demand" }
+  };
+  const order = ["apex","alpha","mff","lucid","tpt","tradeify","ft","fff"];
+  document.getElementById("cmpBody").innerHTML = order.map(k => {
+    const f = D.firms[k], s = specs[k], off = D.discounts[k];
+    return `<tr>
+      <td><div class="cmp-firm"><span class="l">${f.logo}</span>${f.name}</div></td>
+      <td>${s.split}</td><td>${s.dd}</td><td>${s.cycle}</td>
+      <td><span class="cmp-off">${off}% OFF · ${D.code}</span></td>
+      <td><a class="btn btn-sm" href="${f.site}" target="_blank" rel="noopener">Learn More ↗</a></td>
+    </tr>`;
+  }).join("");
+</script>
+</body>
+</html>

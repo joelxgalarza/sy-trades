@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — Sy Trades</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div data-banner></div>
+<div data-header></div>
+
+<main class="container section">
+  <div class="center" style="margin-bottom:30px;">
+    <h1 class="section-title" style="font-size:clamp(28px,5vw,42px);">Terms of Service</h1>
+    <p class="eyebrow">Official rules for the Sy Trades weekly giveaway.</p>
+  </div>
+  <div class="terms-card" id="termsCard"></div>
+</main>
+
+<div data-footer></div>
+
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/terms.js"></script>
+<script>document.getElementById("termsCard").innerHTML = window.SY_TERMS_HTML;</script>
+</body>
+</html>

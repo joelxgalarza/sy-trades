@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A-Z Beginner Guide — Sy Trades</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div data-banner></div>
+<div data-header></div>
+
+<main class="container section">
+  <a class="back-link" href="index.html">← Back</a>
+  <div class="center" style="margin-bottom:10px;">
+    <h1 class="section-title" style="font-size:clamp(28px,5vw,44px);">A-Z Beginner Guide</h1>
+    <p class="eyebrow">Everything you need to go from total beginner to your first funded account — step by step.</p>
+  </div>
+
+  <div class="guide-grid">
+    <div class="guide-item"><div class="num">01</div><h3>What Is Prop Trading?</h3><p>Proprietary (prop) firms give you access to their capital to trade futures. You prove your skill in an evaluation, then trade a funded account and keep a share of the profits — without risking your own money beyond the eval fee.</p></div>
+    <div class="guide-item"><div class="num">02</div><h3>Futures Basics</h3><p>Learn contracts, ticks, and margin. Start with micro contracts (MES, MNQ) to keep risk small while you build consistency and screen time.</p></div>
+    <div class="guide-item"><div class="num">03</div><h3>Choosing a Platform</h3><p>Most firms support NinjaTrader, Tradovate, or Rithmic. Pick one, learn the hotkeys, and practice order entry until it's second nature.</p></div>
+    <div class="guide-item"><div class="num">04</div><h3>Picking a Firm</h3><p>Match the firm's rules to your style. Check our <a href="compare.html" style="color:var(--blue-light)">Prop Firm Comparison</a> and <a href="true-cost.html" style="color:var(--blue-light)">True Cost to Funding</a> tools first.</p></div>
+    <div class="guide-item"><div class="num">05</div><h3>Risk Management</h3><p>The #1 reason traders blow evals is poor risk control. Define max daily loss, per-trade risk, and stick to it. Survival beats home runs.</p></div>
+    <div class="guide-item"><div class="num">06</div><h3>Building a Strategy</h3><p>Develop a simple, repeatable edge. Backtest it, then forward-test on sim before risking eval capital. Journal every trade.</p></div>
+    <div class="guide-item"><div class="num">07</div><h3>Passing the Evaluation</h3><p>Trade your plan, hit the profit target without breaching drawdown, and don't rush. One clean run beats ten reckless attempts.</p></div>
+    <div class="guide-item"><div class="num">08</div><h3>Getting Funded & Paid</h3><p>Understand activation, consistency rules, and payout cycles. See our <a href="maximizing-payouts.html" style="color:var(--blue-light)">Maximizing Payouts</a> guide to optimize withdrawals.</p></div>
+    <div class="guide-item"><div class="num">09</div><h3>Join the Community</h3><p>Trading is lonely — don't do it alone. Join our free Discord for live calls, accountability, weekly giveaways, and exclusive discount codes.</p></div>
+  </div>
+
+  <div class="cta-block" style="margin-top:46px;">
+    <h2 class="section-title">Ready to Start?</h2>
+    <p>Join 6,000+ traders in our free community and get the full video walkthrough.</p>
+    <a class="btn btn-discord" id="joinBtn" target="_blank" rel="noopener">Join Free Discord ↗</a>
+  </div>
+</main>
+
+<div data-footer></div>
+
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script>document.getElementById("joinBtn").href = (window.SY_CONFIG&&window.SY_CONFIG.discordInviteUrl)||"#";</script>
+</body>
+</html>

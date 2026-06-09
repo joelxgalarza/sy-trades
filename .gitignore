@@ -1,0 +1,16 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Dependencies (not used, but just in case)
+node_modules/
+
+# Host CLIs
+.vercel
+.netlify

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enter the Giveaways — Sy Trades</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div data-banner></div>
+<div data-header></div>
+
+<main class="container section">
+  <div class="center">
+    <h1 class="section-title" style="font-size:clamp(28px,5vw,42px);">Enter the Giveaways</h1>
+    <p class="eyebrow">Submit your entries for a chance to win weekly prizes.</p>
+    <div style="margin:24px 0 36px;">
+      <div class="tabs">
+        <button class="tab active" data-tab="give">Giveaway</button>
+        <button class="tab" data-tab="terms">Terms of Service</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GIVEAWAY TAB -->
+  <div id="tab-give" style="max-width:680px;margin:0 auto;">
+    <div id="giveawayRoot"></div>
+  </div>
+
+  <!-- TERMS TAB -->
+  <div id="tab-terms" style="display:none;">
+    <div class="terms-card" id="termsCard"></div>
+  </div>
+</main>
+
+<div data-footer></div>
+
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/terms.js"></script>
+<script src="js/giveaway.js"></script>
+<script>
+  // tab switching
+  document.getElementById("termsCard").innerHTML = window.SY_TERMS_HTML;
+  document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+    t.classList.add("active");
+    const tab = t.getAttribute("data-tab");
+    document.getElementById("tab-give").style.display  = tab === "give"  ? "" : "none";
+    document.getElementById("tab-terms").style.display = tab === "terms" ? "" : "none";
+  }));
+  // deep link to terms tab from footer (terms.html handles standalone)
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maximizing Payouts — Sy Trades</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div data-banner></div>
+<div data-header></div>
+
+<main class="container section">
+  <a class="back-link" href="index.html">← Back</a>
+  <div class="center" style="margin-bottom:10px;">
+    <h1 class="section-title" style="font-size:clamp(28px,5vw,44px);">Maximizing Payouts</h1>
+    <p class="eyebrow">Proven strategies to maximize your profits and optimize your payout potential once you're funded.</p>
+  </div>
+
+  <div class="prose-card">
+    <h3>Understand Your Payout Rules First</h3>
+    <p>Every firm has different payout mechanics: minimum trading days, consistency rules (no single day exceeding a % of total profit), minimum withdrawal amounts, and payout cycles. Before you take a single trade on a funded account, read these rules carefully — breaching a consistency rule can delay or void a payout.</p>
+  </div>
+
+  <div class="prose-card">
+    <h3>Spread Your Profits Evenly</h3>
+    <p>Most consistency rules require that no single day makes up more than a set percentage (often 20–40%) of your total profit at withdrawal. The fix is simple: aim for steady, smaller green days rather than one massive win. Consistency not only satisfies the rule — it's also a hallmark of a durable edge.</p>
+  </div>
+
+  <div class="prose-card">
+    <h3>Scale Account Size Strategically</h3>
+    <p>Larger accounts mean larger position limits and bigger payout ceilings. Once you've proven consistency on a smaller account, scaling up (or running multiple accounts) can multiply your payout potential — just make sure your risk management scales with it.</p>
+  </div>
+
+  <div class="prose-card">
+    <h3>Time Your Withdrawals</h3>
+    <p>Hitting the minimum payout threshold sooner lets you withdraw on the earliest available cycle, locking in profit and reducing the temptation to give it back. Many funded traders withdraw on every available cycle to "pay themselves first."</p>
+  </div>
+
+  <div class="prose-card">
+    <h3>Minimize Costs to Maximize Net Profit</h3>
+    <p>Your payout is what's left after fees. Use discount codes on evaluations and resets (code <strong id="codeInline"></strong> saves up to 40%), pick firms with no or low activation fees, and avoid unnecessary resets by trading carefully. Check the <a href="true-cost.html" style="color:var(--blue-light)">True Cost to Funding</a> tool to compare.</p>
+  </div>
+
+  <div class="prose-card">
+    <h3>Protect Your Funded Account</h3>
+    <p>A funded account is an asset — treat it like one. The fastest way to lose payout potential is a blown account. Stick to your max daily loss, avoid revenge trading, and step away after hitting your daily goal. Discipline compounds.</p>
+  </div>
+
+  <div class="cta-block" style="margin-top:46px;">
+    <h2 class="section-title">Want the Full Breakdown?</h2>
+    <p>Join our free Discord for live payout walkthroughs and weekly giveaways.</p>
+    <a class="btn btn-discord" id="joinBtn" target="_blank" rel="noopener">Join Free Discord ↗</a>
+  </div>
+</main>
+
+<div data-footer></div>
+
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script>
+  document.getElementById("codeInline").textContent = window.SY_DATA.code;
+  document.getElementById("joinBtn").href = (window.SY_CONFIG&&window.SY_CONFIG.discordInviteUrl)||"#";
+</script>
+</body>
+</html>
