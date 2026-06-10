@@ -59,14 +59,10 @@
   const specs = {
     apex:     { split:"100% first $25k, then 90%", dd:"Trailing", cycle:"On-demand (8 days)" },
     alpha:    { split:"Up to 90%", dd:"EOD Trailing", cycle:"Bi-weekly" },
-    mff:      { split:"Up to 90%", dd:"EOD / Static", cycle:"On-demand" },
     lucid:    { split:"Up to 90%", dd:"EOD Trailing", cycle:"Weekly" },
-    tpt:      { split:"80% → 90%", dd:"EOD Trailing", cycle:"Weekly (Pro)" },
-    tradeify: { split:"Up to 90%", dd:"Static / Trailing", cycle:"On-demand" },
-    ft:       { split:"Up to 90%", dd:"EOD Trailing", cycle:"Bi-weekly" },
-    fff:      { split:"Up to 90%", dd:"EOD Trailing", cycle:"On-demand" }
+    tradeify: { split:"Up to 90%", dd:"Static / Trailing", cycle:"On-demand" }
   };
-  const order = ["apex","alpha","mff","lucid","tpt","tradeify","ft","fff"];
+  const order = ["apex","lucid","tradeify","alpha"];
   document.getElementById("cmpBody").innerHTML = order.map(k => {
     const f = D.firms[k], s = specs[k], off = D.discounts[k];
     return `<tr>

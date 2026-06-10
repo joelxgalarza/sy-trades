@@ -19,7 +19,7 @@
   const bannerEl = document.querySelector("[data-banner]");
   if (bannerEl) {
     bannerEl.innerHTML = `<div class="promo-banner" id="promoBanner">
-      Take Profit Trader is 40% Off & No Activation Fee With Code:
+      Apex Trader Funding is 80% Off With Code:
       <span class="code-pill" data-copy="${CODE}">${CODE} <span aria-hidden="true">⧉</span></span>
       <button class="close-banner" aria-label="Close">&times;</button>
     </div>`;
@@ -76,12 +76,9 @@
           <div>
             <h5>Firms</h5>
             <a href="https://apextraderfunding.com" target="_blank" rel="noopener">Apex Trader Funding</a>
-            <a href="https://thealphafutures.com" target="_blank" rel="noopener">Alpha Futures</a>
-            <a href="https://myfundedfutures.com" target="_blank" rel="noopener">My Funded Futures</a>
             <a href="https://lucidtrading.com" target="_blank" rel="noopener">Lucid Trading</a>
-            <a href="https://takeprofittrader.com" target="_blank" rel="noopener">Take Profit Trader</a>
             <a href="https://tradeify.co" target="_blank" rel="noopener">Tradeify</a>
-            <a href="https://fundingticks.com" target="_blank" rel="noopener">FundingTicks</a>
+            <a href="https://thealphafutures.com" target="_blank" rel="noopener">Alpha Futures</a>
           </div>
           <div>
             <h5>Support</h5>
