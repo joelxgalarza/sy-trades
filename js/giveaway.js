@@ -11,6 +11,9 @@
 
   const CLIENT_ID = CFG.discordClientId || "";
   const WEBHOOK = CFG.discordWebhookUrl || "";
+  // Optional server-side proxy (Cloudflare Worker) that hides the webhook.
+  // When set, entries are sent here instead of straight to Discord.
+  const PROXY = CFG.entryProxyUrl || "";
   const INVITE = CFG.discordInviteUrl || "#";
   const REDIRECT = CFG.discordRedirectUri ||
     (window.location.origin + window.location.pathname);
@@ -71,38 +74,70 @@
     window.location.href = url;
   }
 
-  // ---------- webhook ----------
+  // ---------- submit entry ----------
+  // Preferred path: POST raw entry to the Cloudflare Worker proxy, which holds
+  // the webhook URL server-side and builds the Discord message itself.
+  // Fallback path: if no proxy is set but a webhook is, POST straight to Discord
+  // (webhook visible client-side — fine for low-stakes, see README/SECURITY).
   async function sendToWebhook(entry, user) {
-    if (!WEBHOOK || WEBHOOK === "YOUR_DISCORD_WEBHOOK_URL") {
-      return { ok: false, reason: "no-webhook" };
-    }
     const firm = D.firms[entry.firmKey];
-    const payload = {
-      username: "Sy Trades Giveaway",
-      embeds: [{
-        title: "🎉 New Giveaway Entry",
-        color: 0x2563eb,
-        fields: [
-          { name: "Firm", value: firm.name, inline: true },
-          { name: "Account Size", value: entry.size, inline: true },
-          { name: "Discount Code", value: CODE, inline: true },
-          { name: "Order Number", value: "`" + entry.orderId + "`", inline: false },
-          { name: "Full Name (on order)", value: entry.fullName, inline: true },
-          { name: "Discord", value: `${user.username} (\`${user.id}\`)`, inline: true }
-        ],
-        timestamp: new Date().toISOString()
-      }]
-    };
-    try {
-      const res = await fetch(WEBHOOK, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      return { ok: res.ok, reason: res.ok ? "" : ("http-" + res.status) };
-    } catch (e) {
-      return { ok: false, reason: "network" };
+    const proxySet = PROXY && PROXY !== "YOUR_WORKER_URL";
+    const webhookSet = WEBHOOK && WEBHOOK !== "YOUR_DISCORD_WEBHOOK_URL";
+
+    if (proxySet) {
+      // send a flat, validated payload; the Worker formats + forwards it
+      const body = {
+        firmKey: entry.firmKey,
+        firmName: firm.name,
+        accountSize: entry.size,
+        orderId: entry.orderId,
+        fullName: entry.fullName,
+        code: CODE,
+        discordUsername: user.username,
+        discordId: user.id
+      };
+      try {
+        const res = await fetch(PROXY, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+        return { ok: res.ok, reason: res.ok ? "" : ("proxy-" + res.status) };
+      } catch (e) {
+        return { ok: false, reason: "network" };
+      }
     }
+
+    if (webhookSet) {
+      const payload = {
+        username: "Sy Trades Giveaway",
+        embeds: [{
+          title: "🎉 New Giveaway Entry",
+          color: 0x2563eb,
+          fields: [
+            { name: "Firm", value: firm.name, inline: true },
+            { name: "Account Size", value: entry.size, inline: true },
+            { name: "Discount Code", value: CODE, inline: true },
+            { name: "Order Number", value: "`" + entry.orderId + "`", inline: false },
+            { name: "Full Name (on order)", value: entry.fullName, inline: true },
+            { name: "Discord", value: `${user.username} (\`${user.id}\`)`, inline: true }
+          ],
+          timestamp: new Date().toISOString()
+        }]
+      };
+      try {
+        const res = await fetch(WEBHOOK, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        return { ok: res.ok, reason: res.ok ? "" : ("http-" + res.status) };
+      } catch (e) {
+        return { ok: false, reason: "network" };
+      }
+    }
+
+    return { ok: false, reason: "no-webhook" };
   }
 
   // ---------- rendering ----------
