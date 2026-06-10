@@ -32,13 +32,13 @@ window.SY_CONFIG = {
   discordWebhookUrl: "YOUR_DISCORD_WEBHOOK_URL",
 
   // Public invite link to your community server
-  discordInviteUrl: "https://discord.gg/your-invite",
+  discordInviteUrl: "https://discord.gg/rWaP7bEWZ",
 
   // --- SOCIALS (footer) ---
   socials: {
     youtube:   "https://youtube.com/@sytrades",
     twitter:   "https://x.com/sytrades",
     instagram: "https://instagram.com/sytrades",
-    discord:   "https://discord.gg/your-invite"
+    discord:   "https://discord.gg/rWaP7bEWZ"
   }
 };
