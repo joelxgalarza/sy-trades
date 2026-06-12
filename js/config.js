@@ -15,9 +15,10 @@ window.SY_CONFIG = {
   //    (e.g. https://yoursite.com/giveaway.html). It must match byte-for-byte.
   discordClientId: "1514088240548679840",
 
-  // Optional: force a specific redirect URI. Leave "" to auto-use the current
-  // giveaway.html URL (works for most static hosts).
-  discordRedirectUri: "",
+  // Force the exact redirect URI registered in the Discord developer portal.
+  // Pinning this means OAuth works no matter how visitors reach the page
+  // (with/without .html, www, etc.) — they all return to this canonical URL.
+  discordRedirectUri: "https://sytradesgiveaway.com/giveaway.html",
 
   // --- WHERE GIVEAWAY ENTRIES ARE SENT ---
   // RECOMMENDED: a Cloudflare Worker proxy that keeps the webhook URL secret
