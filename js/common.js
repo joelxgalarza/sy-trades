@@ -79,6 +79,7 @@
             <a href="https://lucidtrading.com" target="_blank" rel="noopener">Lucid Trading</a>
             <a href="https://tradeify.co" target="_blank" rel="noopener">Tradeify</a>
             <a href="https://thealphafutures.com" target="_blank" rel="noopener">Alpha Futures</a>
+            <a href="https://takeprofittrader.com" target="_blank" rel="noopener">Take Profit Trader</a>
           </div>
           <div>
             <h5>Support</h5>

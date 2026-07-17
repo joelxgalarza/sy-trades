@@ -60,9 +60,10 @@
     apex:     { split:"100% first $25k, then 90%", dd:"Trailing", cycle:"On-demand (8 days)" },
     alpha:    { split:"Up to 90%", dd:"EOD Trailing", cycle:"Bi-weekly" },
     lucid:    { split:"Up to 90%", dd:"EOD Trailing", cycle:"Weekly" },
-    tradeify: { split:"Up to 90%", dd:"Static / Trailing", cycle:"On-demand" }
+    tradeify: { split:"Up to 90%", dd:"Static / Trailing", cycle:"On-demand" },
+    tpt:      { split:"80% PRO / 90% PRO+", dd:"EOD (PRO+)", cycle:"On-demand (day one)" }
   };
-  const order = ["apex","lucid","tradeify","alpha"];
+  const order = ["apex","lucid","tradeify","alpha","tpt"];
   document.getElementById("cmpBody").innerHTML = order.map(k => {
     const f = D.firms[k], s = specs[k], off = D.discounts[k];
     return `<tr>
