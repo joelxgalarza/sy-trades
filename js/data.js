@@ -13,7 +13,9 @@
     alpha: `<svg viewBox="0 0 48 48" fill="none"><path d="M24 8 8 40h7l9-20 9 20h7L24 8zm0 19-4 9h8l-4-9z" fill="#fff"/></svg>`,
     lucid: `<svg viewBox="0 0 48 48"><defs><radialGradient id="lg" cx="38%" cy="34%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#7c8aa0"/></radialGradient></defs><circle cx="24" cy="24" r="16" fill="url(#lg)"/></svg>`,
     tradeify: `<svg viewBox="0 0 48 48"><path d="M14 30c2-8 7-13 13-15M16 33c3-7 8-11 14-12" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M12 34l4 4 6-2 5 3 6-4" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-    tpt:   `<svg viewBox="0 0 48 48" fill="none"><path d="M6 34 20 20l7 7L40 14" stroke="#22c55e" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 13h9v9" stroke="#22c55e" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+    tpt:   `<svg viewBox="0 0 48 48" fill="none"><path d="M6 34 20 20l7 7L40 14" stroke="#22c55e" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 13h9v9" stroke="#22c55e" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    mffu:  `<svg viewBox="0 0 48 48" fill="none"><path d="M16 8v6M16 30v10M32 12v6M32 32v8" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><rect x="11" y="14" width="10" height="16" rx="2" fill="#fbbf24"/><rect x="27" y="18" width="10" height="14" rx="2" fill="#fff"/></svg>`,
+    bg:    `<svg viewBox="0 0 48 48" fill="none"><path d="M24 6l14 5v11c0 9-5.5 15.5-14 20-8.5-4.5-14-11-14-20V11l14-5z" fill="#38bdf8"/><path d="m17 24 5 5 9-10" stroke="#0b1220" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`
   };
 
   // Firm directory (links go to real firm homepages per request)
@@ -22,20 +24,22 @@
     alpha:    { name: "Alpha Futures",       site: "https://thealphafutures.com",   logo: glyph.alpha },
     lucid:    { name: "Lucid Trading",       site: "https://lucidtrading.com",      logo: glyph.lucid },
     tradeify: { name: "Tradeify",            site: "https://tradeify.co",           logo: glyph.tradeify },
-    tpt:      { name: "Take Profit Trader",  site: "https://takeprofittrader.com",  logo: glyph.tpt }
+    tpt:      { name: "Take Profit Trader",  site: "https://takeprofittrader.com",  logo: glyph.tpt },
+    mffu:     { name: "My Funded Futures",   site: "https://myfundedfutures.com",   logo: glyph.mffu },
+    bg:       { name: "Blue Guardian",       site: "https://blueguardian.com/futures/", logo: glyph.bg }
   };
 
   // Discount % per firm (single code "OZZ" everywhere)
   const discounts = {
-    apex: 80, alpha: 10, lucid: 30, tradeify: 33, tpt: 40
+    apex: 80, alpha: 10, lucid: 30, tradeify: 33, tpt: 40, mffu: 20, bg: 25
   };
 
   // True Cost to Funding tables: [firmKey, evalCost, activationFee]
   const trueCost = {
-    "25K":  [["apex",167,0],["lucid",60,0],["tradeify",175,0],["tpt",150,130]],
-    "50K":  [["apex",187,0],["alpha",99,0],["lucid",80,0],["tradeify",250,0],["tpt",170,130]],
-    "100K": [["apex",297,0],["alpha",199,0],["lucid",193,0],["tradeify",440,0],["tpt",330,130]],
-    "150K": [["apex",397,0],["alpha",239,149],["lucid",259,0],["tradeify",510,0],["tpt",360,130]],
+    "25K":  [["apex",167,0],["lucid",60,0],["tradeify",175,0],["tpt",150,130],["bg",208,0]],
+    "50K":  [["apex",187,0],["alpha",99,0],["lucid",80,0],["tradeify",250,0],["tpt",170,130],["mffu",157,0],["bg",324,0]],
+    "100K": [["apex",297,0],["alpha",199,0],["lucid",193,0],["tradeify",440,0],["tpt",330,130],["mffu",267,0],["bg",623,0]],
+    "150K": [["apex",397,0],["alpha",239,149],["lucid",259,0],["tradeify",510,0],["tpt",360,130],["mffu",347,0]],
     "250K": [["apex",497,0]],
     "300K": [["apex",597,0]]
   };
@@ -46,11 +50,13 @@
     { key:"lucid",    ribbon:"Ending soon", soon:true },
     { key:"tpt",      ribbon:"Ending soon", soon:true },
     { key:"tradeify", ribbon:"Ends 6/30", soon:false },
-    { key:"alpha",    ribbon:"Ending soon", soon:true }
+    { key:"alpha",    ribbon:"Ending soon", soon:true },
+    { key:"mffu",     ribbon:"Ending soon", soon:true },
+    { key:"bg",       ribbon:"Ending soon", soon:true }
   ];
 
   // Trusted-by strip
-  const trustedStrip = ["apex","lucid","tradeify","alpha","tpt"];
+  const trustedStrip = ["apex","lucid","tradeify","alpha","tpt","mffu","bg"];
 
   // Giveaway firms + per-firm entry guidance
   const giveawayFirms = [
@@ -58,7 +64,9 @@
     { key:"lucid",    instr:"In your entries, ensure to enter the exact Order number as shown in the email you received from Lucid Trading." },
     { key:"tradeify", instr:"In your entries, ensure to enter the exact Order number as shown in the subject of the email you received from Tradeify." },
     { key:"alpha",    instr:"In your entries, ensure to enter the exact Order number as shown in the subject of the email you received from Alpha Futures." },
-    { key:"tpt",      instr:"In your entries, ensure to enter the exact Order number as shown in the purchase confirmation email you received from Take Profit Trader." }
+    { key:"tpt",      instr:"In your entries, ensure to enter the exact Order number as shown in the purchase confirmation email you received from Take Profit Trader." },
+    { key:"mffu",     instr:"In your entries, ensure to enter the exact Order number as shown in the purchase confirmation email you received from My Funded Futures." },
+    { key:"bg",       instr:"In your entries, ensure to enter the exact Order number as shown in the purchase confirmation email you received from Blue Guardian." }
   ];
 
   const accountSizes = ["25k","50k","100k","150k","250k","300k"];

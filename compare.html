@@ -61,9 +61,11 @@
     alpha:    { split:"Up to 90%", dd:"EOD Trailing", cycle:"Bi-weekly" },
     lucid:    { split:"Up to 90%", dd:"EOD Trailing", cycle:"Weekly" },
     tradeify: { split:"Up to 90%", dd:"Static / Trailing", cycle:"On-demand" },
-    tpt:      { split:"80% PRO / 90% PRO+", dd:"EOD (PRO+)", cycle:"On-demand (day one)" }
+    tpt:      { split:"80% PRO / 90% PRO+", dd:"EOD (PRO+)", cycle:"On-demand (day one)" },
+    mffu:     { split:"Up to 90%", dd:"EOD Trailing", cycle:"Daily (Rapid)" },
+    bg:       { split:"100% first $15k, then 90%", dd:"Trailing", cycle:"Instant" }
   };
-  const order = ["apex","lucid","tradeify","alpha","tpt"];
+  const order = ["apex","lucid","tradeify","alpha","tpt","mffu","bg"];
   document.getElementById("cmpBody").innerHTML = order.map(k => {
     const f = D.firms[k], s = specs[k], off = D.discounts[k];
     return `<tr>

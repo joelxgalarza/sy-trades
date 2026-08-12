@@ -80,6 +80,8 @@
             <a href="https://tradeify.co" target="_blank" rel="noopener">Tradeify</a>
             <a href="https://thealphafutures.com" target="_blank" rel="noopener">Alpha Futures</a>
             <a href="https://takeprofittrader.com" target="_blank" rel="noopener">Take Profit Trader</a>
+            <a href="https://myfundedfutures.com" target="_blank" rel="noopener">My Funded Futures</a>
+            <a href="https://blueguardian.com/futures/" target="_blank" rel="noopener">Blue Guardian</a>
           </div>
           <div>
             <h5>Support</h5>
